@@ -1,0 +1,136 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 56px;
+  background: var(--color-nav-bg);
+  border-bottom: 1px solid var(--color-nav-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-icon {
+  width: 20px;
+  height: 20px;
+  color: #6366f1;
+}
+
+.brand-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+
+.navbar-links a {
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.navbar-links a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.navbar-links a.active {
+  background: rgba(99, 102, 241, 0.25);
+  color: #fff;
+}
+
+/* Dark mode toggle */
+.theme-toggle {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.25s;
+  padding: 0 4px;
+}
+
+.toggle-track.dark {
+  background: rgba(99, 102, 241, 0.4);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  left: 4px;
+  transition: transform 0.25s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-track.dark .toggle-thumb {
+  transform: translateX(24px);
+}
+
+.toggle-icon {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  color: #fff;
+  transition: opacity 0.2s;
+}
+
+.toggle-icon.sun {
+  right: 6px;
+  opacity: 1;
+}
+
+.toggle-icon.moon {
+  left: 6px;
+  opacity: 0;
+}
+
+.toggle-track.dark .toggle-icon.sun {
+  opacity: 0;
+}
+
+.toggle-track.dark .toggle-icon.moon {
+  opacity: 1;
+}
+
+.page-content {
+  background: var(--color-bg-page);
+  min-height: calc(100vh - 56px);
+  transition: background 0.2s;
+}

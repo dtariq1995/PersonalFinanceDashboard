@@ -1,1 +1,66 @@
-<p>rules works!</p>
+<div class="rules-container">
+  <h1 class="page-title">Rules</h1>
+
+  <div class="form-card">
+    <h2 class="form-title">New Rule</h2>
+    <form class="rule-form" (ngSubmit)="addRule()">
+      <div class="form-group">
+        <label for="ruleName">Rule Name</label>
+        <input id="ruleName" type="text" [(ngModel)]="newRule.name" name="name" placeholder="e.g. Walmart Rule" />
+      </div>
+      <div class="form-group">
+        <label for="merchant">Merchant Keyword</label>
+        <input id="merchant" type="text" [(ngModel)]="newRule.merchant" name="merchant" placeholder="e.g. walmart" />
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="newRule.categoryId" name="categoryId">
+          <option [ngValue]="null">— None —</option>
+          @for (category of categories(); track category.id) {
+            <option [ngValue]="category.id">{{ category.name }}</option>
+          }
+        </select>
+      </div>
+      <button type="submit" class="btn-add" [disabled]="!newRule.name.trim() || !newRule.merchant.trim()">
+        Add Rule
+      </button>
+    </form>
+  </div>
+
+  @if (rules().length === 0) {
+    <div class="empty-state">
+      <p>No rules yet. Create one above.</p>
+    </div>
+  } @else {
+    <table class="rules-table">
+      <thead>
+        <tr>
+          <th>Rule Name</th>
+          <th>Merchant Keyword</th>
+          <th>Category</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (rule of rules(); track rule.id) {
+          <tr>
+            <td>{{ rule.name }}</td>
+            <td><code class="keyword">{{ rule.merchant }}</code></td>
+            <td>
+              @if (rule.category) {
+                <span class="category-badge" [class.income]="rule.category.type === 'Income'" [class.expense]="rule.category.type === 'Expense'">
+                  {{ rule.category.name }}
+                </span>
+              } @else {
+                <span class="category-badge uncategorized">None</span>
+              }
+            </td>
+            <td class="action-col">
+              <button class="btn-delete" (click)="deleteRule(rule.id)">Delete</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>

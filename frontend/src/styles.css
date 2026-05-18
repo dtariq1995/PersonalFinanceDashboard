@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-bg-page:     #f5f6fa;
+  --color-bg-card:     #ffffff;
+  --color-bg-header:   #f5f6fa;
+  --color-bg-hover:    #fafbff;
+  --color-bg-input:    #ffffff;
+  --color-bg-code:     #f3f4f6;
+  --color-text-primary:   #1a1a2e;
+  --color-text-secondary: #374151;
+  --color-text-muted:     #6b7280;
+  --color-text-code:      #374151;
+  --color-border:         #e5e7eb;
+  --color-border-light:   #f3f4f6;
+  --color-border-input:   #d1d5db;
+  --color-shadow:         rgba(0, 0, 0, 0.08);
+  --color-nav-bg:         #1e293b;
+  --color-nav-border:     transparent;
+}
+
+:root.dark {
+  --color-bg-page:     #0f172a;
+  --color-bg-card:     #1e293b;
+  --color-bg-header:   #162032;
+  --color-bg-hover:    #263347;
+  --color-bg-input:    #263347;
+  --color-bg-code:     #334155;
+  --color-text-primary:   #f1f5f9;
+  --color-text-secondary: #e2e8f0;
+  --color-text-muted:     #94a3b8;
+  --color-text-code:      #e2e8f0;
+  --color-border:         #334155;
+  --color-border-light:   #263347;
+  --color-border-input:   #475569;
+  --color-shadow:         rgba(0, 0, 0, 0.3);
+  --color-nav-bg:         #0f172a;
+  --color-nav-border:     #1e293b;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--color-bg-page);
+  color: var(--color-text-secondary);
+  transition: background 0.2s, color 0.2s;
+}

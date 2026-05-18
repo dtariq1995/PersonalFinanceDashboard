@@ -1,1 +1,87 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <h1 class="page-title">Dashboard</h1>
+
+  <!-- Summary Cards -->
+  <div class="cards-row">
+    <div class="card card-income">
+      <div class="card-label">Total Income</div>
+      <div class="card-value">{{ totalIncome() | currency }}</div>
+    </div>
+    <div class="card card-expense">
+      <div class="card-label">Total Expenses</div>
+      <div class="card-value">{{ totalExpenses() | currency }}</div>
+    </div>
+    <div class="card" [class.card-positive]="netSavings() >= 0" [class.card-negative]="netSavings() < 0">
+      <div class="card-label">Net Savings</div>
+      <div class="card-value">{{ netSavings() | currency }}</div>
+    </div>
+    <div class="card card-neutral">
+      <div class="card-label">Uncategorized</div>
+      <div class="card-value">{{ uncategorizedCount() }}</div>
+      <div class="card-sub">transactions</div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h2 class="chart-title">Spending by Category</h2>
+      <div class="chart-wrapper">
+        <canvas #categoryChart></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h2 class="chart-title">Income vs Expenses</h2>
+      <div class="chart-wrapper">
+        <canvas #incomeExpenseChart></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trend Chart -->
+  <div class="chart-card chart-card-full">
+    <h2 class="chart-title">Daily Activity</h2>
+    <div class="chart-wrapper chart-wrapper-wide">
+      <canvas #spendingTrendChart></canvas>
+    </div>
+  </div>
+
+  <!-- Recent Transactions -->
+  <div class="recent-card">
+    <h2 class="chart-title">Recent Transactions</h2>
+    @if (recentTransactions().length === 0) {
+      <p class="empty-state">No transactions yet.</p>
+    } @else {
+      <table class="recent-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Merchant</th>
+            <th>Category</th>
+            <th class="amount-col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (t of recentTransactions(); track t.id) {
+            <tr>
+              <td class="date-col">{{ t.date | date:'mediumDate' }}</td>
+              <td>{{ t.merchant }}</td>
+              <td>
+                @if (t.category) {
+                  <span class="badge" [class.income]="t.category.type === 'Income'" [class.expense]="t.category.type === 'Expense'">
+                    {{ t.category.name }}
+                  </span>
+                } @else {
+                  <span class="badge uncategorized">Uncategorized</span>
+                }
+              </td>
+              <td class="amount-col" [class.amount-income]="t.category?.type === 'Income'" [class.amount-expense]="t.category?.type === 'Expense'">
+                {{ t.amount | currency }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>
