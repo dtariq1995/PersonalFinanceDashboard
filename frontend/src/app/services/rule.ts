@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Rule } from '../models/models';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RuleService {
-  private apiUrl = 'http://localhost:5265/api/rules';   // Base url for rules api endpoints
+  private apiUrl = `${environment.apiUrl}/rules`;
 
   constructor(private http: HttpClient) {}
 
