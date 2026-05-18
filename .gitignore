@@ -1,0 +1,17 @@
+# .NET
+bin/
+obj/
+*.user
+appsettings.Development.json
+appsettings.json
+
+# Angular
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
