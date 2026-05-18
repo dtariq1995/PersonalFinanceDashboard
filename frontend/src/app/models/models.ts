@@ -20,5 +20,5 @@ export interface Transaction {
   amount: number;
   date: string; // ISO format date string
   categoryId: number | null; // Category can be null if not categorized yet
-  categoryName?: Category | null; // Optional, for display purposes}
+  category?: Category | null;
 }

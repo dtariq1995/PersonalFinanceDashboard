@@ -1,0 +1,40 @@
+<div class="transactions-container">
+  <h1 class="page-title">Transactions</h1>
+
+  @if (transactions().length === 0) {
+    <div class="empty-state">
+      <p>No transactions found.</p>
+    </div>
+  } @else {
+    <table class="transactions-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Merchant</th>
+          <th>Category</th>
+          <th class="amount-col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (transaction of transactions(); track transaction.id) {
+          <tr>
+            <td class="date-col">{{ transaction.date | date:'mediumDate' }}</td>
+            <td>{{ transaction.merchant }}</td>
+            <td>
+              @if (transaction.category) {
+                <span class="category-badge" [class.income]="transaction.category.type === 'Income'" [class.expense]="transaction.category.type === 'Expense'">
+                  {{ transaction.category.name }}
+                </span>
+              } @else {
+                <span class="category-badge uncategorized">Uncategorized</span>
+              }
+            </td>
+            <td class="amount-col" [class.amount-income]="transaction.category?.type === 'Income'" [class.amount-expense]="transaction.category?.type === 'Expense'">
+              {{ transaction.amount | currency }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
