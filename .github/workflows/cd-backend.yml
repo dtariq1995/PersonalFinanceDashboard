@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: PersonalFinanceDashboard
+  AZURE_WEBAPP_NAME: personalfinancedashboard-edbeafhaf0dxhxd5
   DOTNET_VERSION: '8.0.x'
 
 permissions:

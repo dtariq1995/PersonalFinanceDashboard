@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://PersonalFinanceDashboard.azurewebsites.net/api'
+  apiUrl: 'https://personalfinancedashboard-edbeafhaf0dxhxd5.centralus-01.azurewebsites.net/api'
 };
